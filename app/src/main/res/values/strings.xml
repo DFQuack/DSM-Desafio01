@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">DSM-Desafio01</string>
+    <string name="app_name">DSM - Desafío 1</string>
+    <string name="btn1Text">Ejercicio 1</string>
+    <string name="btn2Text">Ejercicio 2</string>
+    <string name="btn3Text">Ejercicio 3</string>
 </resources>

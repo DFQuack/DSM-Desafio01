@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="menuPrimary">#222</color>
+    <color name="coralAccent">#FF6666</color>
+    <color name="limeAccent">#CCFF66</color>
+    <color name="indigoAccent">#5D2E8C</color>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleTextSize">30sp</dimen>
+    <dimen name="normalTextSize">16sp</dimen>
+    <dimen name="titlePadding">10dp</dimen>
+    <dimen name="itemSpacing">15dp</dimen>
+    <dimen name="btnSpacingHorizontal">100dp</dimen>
+    <dimen name="btnMarginVertical">10dp</dimen>
+</resources>
