@@ -1,6 +1,5 @@
 package sv.edu.udb.dsm_desafio01
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import sv.edu.udb.dsm_desafio01.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class PromedioActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +20,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnEjercicio1.setOnClickListener {
-            startActivity(Intent(this, PromedioActivity::class.java))
-        }
+
     }
 }
