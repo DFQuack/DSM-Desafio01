@@ -7,4 +7,186 @@
     android:layout_height="match_parent"
     tools:context=".PromedioActivity">
 
+    <TextView
+        android:id="@+id/screenTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/coralBackground"
+        android:padding="@dimen/titlePadding"
+        android:text="@string/e1Title"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/titleTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/itemSpacing"
+        android:paddingHorizontal="@dimen/screenSpacingHorizontal"
+        android:textAlignment="center"
+        android:text="@string/e1Desc1"
+        android:textSize="@dimen/normalTextSize"
+        app:layout_constraintTop_toBottomOf="@+id/screenTitle" />
+
+    <TextView
+        android:id="@+id/description2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/screenSpacingHorizontal"
+        android:textAlignment="center"
+        android:text="@string/e1Desc2"
+        android:textSize="@dimen/normalTextSize"
+        app:layout_constraintTop_toBottomOf="@+id/description1" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/screenSpacingHorizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/nameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/layoutPaddingVertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/tbName"
+                android:text="@string/e1Name" />
+
+            <EditText
+                android:id="@+id/tbName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textboxHeight"
+                android:importantForAutofill="no"
+                android:inputType="textNoSuggestions" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/n1Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/layoutPaddingVertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/tbN1"
+                android:text="@string/e1N1" />
+
+            <EditText
+                android:id="@+id/tbN1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textboxHeight"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/n2Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/layoutPaddingVertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/tbN2"
+                android:text="@string/e1N2" />
+
+            <EditText
+                android:id="@+id/tbN2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textboxHeight"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/n3Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/layoutPaddingVertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/tbN3"
+                android:text="@string/e1N3" />
+
+            <EditText
+                android:id="@+id/tbN3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textboxHeight"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/n4Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/layoutPaddingVertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/tbN4"
+                android:text="@string/e1N4" />
+
+            <EditText
+                android:id="@+id/tbN4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textboxHeight"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/n5Layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/layoutPaddingVertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/tbN5"
+                android:text="@string/e1N5" />
+
+            <EditText
+                android:id="@+id/tbN5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/textboxHeight"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/btnMarginVertical"
+        android:text="@string/e1Calc"
+        android:textSize="@dimen/normalTextSize"
+        android:backgroundTint="@color/coralAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

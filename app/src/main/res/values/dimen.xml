@@ -6,4 +6,7 @@
     <dimen name="itemSpacing">15dp</dimen>
     <dimen name="btnSpacingHorizontal">100dp</dimen>
     <dimen name="btnMarginVertical">10dp</dimen>
+    <dimen name="screenSpacingHorizontal">30dp</dimen>
+    <dimen name="layoutPaddingVertical">5dp</dimen>
+    <dimen name="textboxHeight">48dp</dimen>
 </resources>
