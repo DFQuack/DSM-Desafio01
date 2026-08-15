@@ -82,11 +82,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/tbN1"
+                android:labelFor="@id/tbG1"
                 android:text="@string/e1G1" />
 
             <EditText
-                android:id="@+id/tbN1"
+                android:id="@+id/tbG1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/textboxHeight"
                 android:importantForAutofill="no"
@@ -103,11 +103,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/tbN2"
+                android:labelFor="@id/tbG2"
                 android:text="@string/e1G2" />
 
             <EditText
-                android:id="@+id/tbN2"
+                android:id="@+id/tbG2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/textboxHeight"
                 android:importantForAutofill="no"
@@ -124,11 +124,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/tbN3"
+                android:labelFor="@id/tbG3"
                 android:text="@string/e1G3" />
 
             <EditText
-                android:id="@+id/tbN3"
+                android:id="@+id/tbG3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/textboxHeight"
                 android:importantForAutofill="no"
@@ -145,11 +145,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/tbN4"
+                android:labelFor="@id/tbG4"
                 android:text="@string/e1G4" />
 
             <EditText
-                android:id="@+id/tbN4"
+                android:id="@+id/tbG4"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/textboxHeight"
                 android:importantForAutofill="no"
@@ -166,11 +166,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/tbN5"
+                android:labelFor="@id/tbG5"
                 android:text="@string/e1G5" />
 
             <EditText
-                android:id="@+id/tbN5"
+                android:id="@+id/tbG5"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/textboxHeight"
                 android:importantForAutofill="no"
