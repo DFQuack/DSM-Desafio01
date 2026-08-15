@@ -5,12 +5,12 @@
     <string name="btn3Text">Ejercicio 3</string>
     <string name="e1Title">Promedio de estudiante</string>
     <string name="e1Desc1">Ingresa 5 notas diferentes.</string>
-    <string name="e1Desc2">Rango: 0.00 - 10.00</string>
+    <string name="e1Desc2">Rango permitido: 0.00 – 10.00</string>
     <string name="e1Name">Nombre</string>
-    <string name="e1N1">Nota 1</string>
-    <string name="e1N2">Nota 2</string>
-    <string name="e1N3">Nota 3</string>
-    <string name="e1N4">Nota 4</string>
-    <string name="e1N5">Nota 5</string>
+    <string name="e1G1">Nota 1</string>
+    <string name="e1G2">Nota 2</string>
+    <string name="e1G3">Nota 3</string>
+    <string name="e1G4">Nota 4</string>
+    <string name="e1G5">Nota 5</string>
     <string name="e1Calc">Calcular</string>
 </resources>
