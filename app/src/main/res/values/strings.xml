@@ -16,4 +16,5 @@
     <string name="typeError">Las notas deben ser valores numéricos no vacíos.</string>
     <string name="rangeError">Las notas deben estar entre 0 y 10.</string>
     <string name="sameValueError">Los valores de las notas no pueden repetirse.</string>
+    <string name="result">Promedio: %1$d</string>
 </resources>

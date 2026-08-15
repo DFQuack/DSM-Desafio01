@@ -190,4 +190,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/itemSpacing"
+        android:paddingHorizontal="@dimen/screenSpacingHorizontal"
+        android:text="@string/result"
+        android:textAlignment="center"
+        android:textSize="@dimen/normalTextSize"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/btnCalc" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

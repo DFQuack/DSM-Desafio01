@@ -1,6 +1,7 @@
 package sv.edu.udb.dsm_desafio01
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,6 +28,10 @@ class PromedioActivity : AppCompatActivity() {
             val grades = validateGrades()
             if (!grades.isNullOrEmpty()) {
                 val average = getAverage(grades)
+                binding.result.text = getString(string.result, average)
+                binding.result.visibility = View.VISIBLE
+            } else {
+                binding.result.visibility = View.INVISIBLE
             }
         }
     }
@@ -35,7 +40,7 @@ class PromedioActivity : AppCompatActivity() {
         val grades = mutableListOf<Double>()
         for (field in fields) {
             // Intenta convertir cada valor a double
-            val value = field.text.toString().toDoubleOrNull()
+            val value = field.text.toString().trim().toDoubleOrNull()
             // Verifica que los valores ingresados sean numéricos
             if (value == null) {
                 field.error = getString(string.typeError)
