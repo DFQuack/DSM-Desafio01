@@ -25,6 +25,9 @@ class PromedioActivity : AppCompatActivity() {
 
         binding.btnCalc.setOnClickListener {
             val grades = validateGrades()
+            if (!grades.isNullOrEmpty()) {
+                val average = getAverage(grades)
+            }
         }
     }
     fun validateGrades(): List<Double>? {
@@ -54,5 +57,13 @@ class PromedioActivity : AppCompatActivity() {
             grades.add(value)
         }
         return grades
+    }
+
+    fun getAverage(grades: List<Double>): Double {
+        var sum = 0.0
+        for (grade in grades) {
+            sum += grade
+        }
+        return sum / grades.size
     }
 }
