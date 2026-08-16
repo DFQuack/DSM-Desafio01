@@ -17,4 +17,9 @@
     <string name="rangeError">Las notas deben estar entre 0 y 10.</string>
     <string name="sameValueError">Los valores de las notas no pueden repetirse.</string>
     <string name="result">Promedio: %1$d</string>
+    <string name="resultNotificationId">Resultado del promedio</string>
+    <string name="channelName">Canal por defecto</string>
+    <string name="notificationsDenied">Se denegaron las notificaciones.</string>
+    <string name="notificationRationale">Usamos las notificaciones para mostrar los resultados.</string>
+    <string name="ok">OK</string>
 </resources>

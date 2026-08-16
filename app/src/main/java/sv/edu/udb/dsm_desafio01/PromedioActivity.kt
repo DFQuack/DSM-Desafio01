@@ -1,18 +1,43 @@
 package sv.edu.udb.dsm_desafio01
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
-import sv.edu.udb.dsm_desafio01.databinding.ActivityPromedioBinding
 import com.google.android.material.snackbar.Snackbar
 import sv.edu.udb.dsm_desafio01.R.string
+import sv.edu.udb.dsm_desafio01.databinding.ActivityPromedioBinding
 
 class PromedioActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPromedioBinding
+    private val requestPermissionLauncher =
+        // Si el permiso se acepta, muestra la notificación. De lo contrario, muestra un Snackbar de información y la app continúa
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                showAverageNotification(lastAverage)
+            } else {
+                Snackbar.make(binding.root, getString(string.notificationsDenied), LENGTH_SHORT).show()
+            }
+        }
+    // La notificación puede no aparecer de forma inmediata (depende del estado de los permisos), por lo que se necesita guardar el valor aparte
+    private var lastAverage: Double = 0.0
+    private val channelId = getString(string.resultNotificationId)
+    private val notificationId = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,17 +49,22 @@ class PromedioActivity : AppCompatActivity() {
             insets
         }
 
+        createNotificationChannel()
+
         binding.btnCalc.setOnClickListener {
             val grades = validateGrades()
             if (!grades.isNullOrEmpty()) {
                 val average = getAverage(grades)
                 binding.result.text = getString(string.result, average)
                 binding.result.visibility = View.VISIBLE
+                notificationPermissionCheck(average)
             } else {
                 binding.result.visibility = View.INVISIBLE
             }
         }
     }
+
+    // Valida las notas
     fun validateGrades(): List<Double>? {
         val fields = listOf(binding.tbG1, binding.tbG2, binding.tbG3, binding.tbG4, binding.tbG5)
         val grades = mutableListOf<Double>()
@@ -64,11 +94,66 @@ class PromedioActivity : AppCompatActivity() {
         return grades
     }
 
+    // Obtiene el promedio
     fun getAverage(grades: List<Double>): Double {
         var sum = 0.0
         for (grade in grades) {
             sum += grade
         }
         return sum / grades.size
+    }
+
+    // Canal de notificaciones (necesario para que se muestren)
+    private fun createNotificationChannel() {
+        val name = getString(string.channelName)
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+
+        val channel = NotificationChannel(channelId, name, importance)
+        val manager = getSystemService(NotificationManager::class.java)
+        manager.createNotificationChannel(channel)
+    }
+
+    // Se encarga de pedir los permisos para notificaciones
+    private fun notificationPermissionCheck(average: Double) {
+        lastAverage = average
+        // No se requiere permiso en runtime antes de Android 13
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            showAverageNotification(average)
+            return
+        }
+
+        val permission = Manifest.permission.POST_NOTIFICATIONS
+        when {
+            // Si ya tiene el permiso, muestra la notificación sin más
+            ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED -> {
+                showAverageNotification(average)
+            }
+            // Si el permiso fue denegado previamente, se muestra un Snackbar que explica la razón del permiso.
+            // Dar OK al Snackbar pide el permiso nuevamente
+            shouldShowRequestPermissionRationale(permission) -> {
+                Snackbar.make(binding.root, getString(string.notificationRationale), LENGTH_LONG)
+                    .setAction(getString(string.ok)) {
+                        requestPermissionLauncher.launch(permission)
+                    }
+                    .show()
+            }
+            // Primera vez pidiendo el permiso
+            else -> {
+                requestPermissionLauncher.launch(permission)
+            }
+        }
+    }
+
+    // Muestra la notificación (solo se llama si los permisos se obtuvieron)
+    @SuppressLint("MissingPermission")
+    private fun showAverageNotification(average: Double) {
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle(getString(string.result))
+            .setContentText(getString(string.result, average))
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
+
+        NotificationManagerCompat.from(this).notify(notificationId, notification)
     }
 }
