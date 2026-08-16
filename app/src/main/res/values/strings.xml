@@ -17,13 +17,13 @@
     <string name="typeError">Las notas deben ser valores numéricos no vacíos.</string>
     <string name="rangeError">Las notas deben estar entre 0 y 10.</string>
     <string name="sameValueError">Los valores de las notas no pueden repetirse.</string>
-    <string name="average">Promedio: %1$d</string>
+    <string name="average">Promedio: %1$.2f</string>
     <string name="avgPassed">%1$s aprobó</string>
     <string name="avgFailed">%1$s reprobó</string>
     <string name="resultNotificationId">Resultado del promedio</string>
     <string name="resultNotificationTitle">Resultado</string>
     <string name="channelName">Canal por defecto</string>
     <string name="notificationsDenied">Se denegaron las notificaciones.</string>
-    <string name="notificationRationale">Usamos las notificaciones para mostrar los resultados.</string>
+    <string name="notificationRationale">Por favor activa las notificaciones para ser advertido de los resultados.</string>
     <string name="ok">OK</string>
 </resources>
