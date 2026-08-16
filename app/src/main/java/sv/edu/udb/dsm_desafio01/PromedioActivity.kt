@@ -28,13 +28,14 @@ class PromedioActivity : AppCompatActivity() {
         // Si el permiso se acepta, muestra la notificación. De lo contrario, muestra un Snackbar de información y la app continúa
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-                showAverageNotification(lastAverage)
+                showAverageNotification(lastAverage, avgResult)
             } else {
                 Snackbar.make(binding.root, getString(string.notificationsDenied), LENGTH_SHORT).show()
             }
         }
     // La notificación puede no aparecer de forma inmediata (depende del estado de los permisos), por lo que se necesita guardar el valor aparte
     private var lastAverage: Double = 0.0
+    private var avgResult = ""
     private val channelId = getString(string.resultNotificationId)
     private val notificationId = 1
 
@@ -52,16 +53,30 @@ class PromedioActivity : AppCompatActivity() {
         createNotificationChannel()
 
         binding.btnCalc.setOnClickListener {
+            val name = validateName()
             val grades = validateGrades()
-            if (!grades.isNullOrEmpty()) {
+            if (!grades.isNullOrEmpty() && !name.isNullOrEmpty()) {
                 val average = getAverage(grades)
-                binding.result.text = getString(string.result, average)
-                binding.result.visibility = View.VISIBLE
-                notificationPermissionCheck(average)
+                binding.average.text = getString(string.average, average)
+                avgResult = if (average >= 6.0) getString(string.avgPassed, name) else getString(string.avgFailed, name)
+                binding.avgResult.text = avgResult
+                binding.average.visibility = View.VISIBLE
+                notificationPermissionCheck(average, avgResult)
             } else {
-                binding.result.visibility = View.INVISIBLE
+                binding.average.visibility = View.INVISIBLE
             }
         }
+    }
+
+    // Valida el nombre ingresado
+    private fun validateName(): String? {
+        val nameTextbox = binding.tbName
+        if (nameTextbox.text.trim().isEmpty()) {
+            nameTextbox.error =getString(string.emptyError)
+            Snackbar.make(binding.root, getString(string.emptyError), LENGTH_SHORT).show()
+            return null
+        }
+        return nameTextbox.text.trim().toString()
     }
 
     // Valida las notas
@@ -114,11 +129,11 @@ class PromedioActivity : AppCompatActivity() {
     }
 
     // Se encarga de pedir los permisos para notificaciones
-    private fun notificationPermissionCheck(average: Double) {
-        lastAverage = average
+    private fun notificationPermissionCheck(average: Double, result: String) {
+        lastAverage = average // Para que requestPermissionLauncher pueda utilizar el valor
         // No se requiere permiso en runtime antes de Android 13
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            showAverageNotification(average)
+            showAverageNotification(average, result)
             return
         }
 
@@ -126,7 +141,7 @@ class PromedioActivity : AppCompatActivity() {
         when {
             // Si ya tiene el permiso, muestra la notificación sin más
             ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED -> {
-                showAverageNotification(average)
+                showAverageNotification(average, result)
             }
             // Si el permiso fue denegado previamente, se muestra un Snackbar que explica la razón del permiso.
             // Dar OK al Snackbar pide el permiso nuevamente
@@ -146,11 +161,11 @@ class PromedioActivity : AppCompatActivity() {
 
     // Muestra la notificación (solo se llama si los permisos se obtuvieron)
     @SuppressLint("MissingPermission")
-    private fun showAverageNotification(average: Double) {
+    private fun showAverageNotification(average: Double, result: String) {
         val notification = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(getString(string.result))
-            .setContentText(getString(string.result, average))
+            .setContentTitle(getString(string.resultNotificationTitle))
+            .setContentText(getString(string.average, average) + "\n" + result)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
 

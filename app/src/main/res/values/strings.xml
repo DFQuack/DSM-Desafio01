@@ -13,11 +13,15 @@
     <string name="e1G4">Nota 4</string>
     <string name="e1G5">Nota 5</string>
     <string name="e1Calc">Calcular</string>
+    <string name="emptyError">Debe llenar todos los campos</string>
     <string name="typeError">Las notas deben ser valores numéricos no vacíos.</string>
     <string name="rangeError">Las notas deben estar entre 0 y 10.</string>
     <string name="sameValueError">Los valores de las notas no pueden repetirse.</string>
-    <string name="result">Promedio: %1$d</string>
+    <string name="average">Promedio: %1$d</string>
+    <string name="avgPassed">%1$s aprobó</string>
+    <string name="avgFailed">%1$s reprobó</string>
     <string name="resultNotificationId">Resultado del promedio</string>
+    <string name="resultNotificationTitle">Resultado</string>
     <string name="channelName">Canal por defecto</string>
     <string name="notificationsDenied">Se denegaron las notificaciones.</string>
     <string name="notificationRationale">Usamos las notificaciones para mostrar los resultados.</string>
