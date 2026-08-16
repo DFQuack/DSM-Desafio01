@@ -36,7 +36,6 @@ class PromedioActivity : AppCompatActivity() {
     // La notificación puede no aparecer de forma inmediata (depende del estado de los permisos), por lo que se necesita guardar el valor aparte
     private var lastAverage: Double = 0.0
     private var avgResult = ""
-    private val channelId = getString(string.resultNotificationId)
     private val notificationId = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,10 +119,11 @@ class PromedioActivity : AppCompatActivity() {
 
     // Canal de notificaciones (necesario para que se muestren)
     private fun createNotificationChannel() {
+        val id = getString(string.resultNotificationId)
         val name = getString(string.channelName)
         val importance = NotificationManager.IMPORTANCE_DEFAULT
 
-        val channel = NotificationChannel(channelId, name, importance)
+        val channel = NotificationChannel(id, name, importance)
         val manager = getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(channel)
     }
@@ -162,7 +162,7 @@ class PromedioActivity : AppCompatActivity() {
     // Muestra la notificación (solo se llama si los permisos se obtuvieron)
     @SuppressLint("MissingPermission")
     private fun showAverageNotification(average: Double, result: String) {
-        val notification = NotificationCompat.Builder(this, channelId)
+        val notification = NotificationCompat.Builder(this, getString(string.resultNotificationId))
             .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(getString(string.resultNotificationTitle))
             .setContentText(getString(string.average, average) + "\n" + result)
